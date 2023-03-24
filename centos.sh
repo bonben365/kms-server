@@ -25,26 +25,14 @@ if [ -f '/etc/init.d/vlmcsd' ]; then
   exit 1
 fi
 
-if [ ! -f '/bin/tar' ]; then
-  echo 'Installing tar ...'
-  yum -q -y install tar
-  check_result $? "Can't install tar."
-  echo 'Install tar succeed.'
-fi
-
-if [ ! -f '/usr/bin/wget' ]; then
-  echo 'Installing wget ...'
-  yum -q -y install wget
-  check_result $? "Can't install wget."
-  echo 'Install wget succeed.'
-fi
-
 if [ ! -f '/sbin/service' ]; then
   echo 'Installing initscripts ...'
   yum -q -y install initscripts
   check_result $? "Can't install initscripts."
   echo 'Install initscripts succeed.'
 fi
+
+yum -q -y install wget tar net-tools
 
 TMP_DIR=`mktemp -d`
 GIT_TAG=svn1112
